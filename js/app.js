@@ -13,43 +13,48 @@
  *
  */
 
-/**
- * Define Global Variables
- *
- */
 const sections = document.querySelectorAll("section");
 const navbar = document.getElementById("navbar__list");
-/**
- * End Global Variables
- * Start Helper Functions
- *
- */
+
 sections.forEach((section) => {
   let navList = document.createElement("li");
-  navList.className = `menu-link ${section.className}`;
+  navList.className = `menu__link ${section.className}`;
   let a = document.createElement("a");
   a.innerText = section.dataset.nav;
   a.href = `#${section.id}`;
+  navList.setAttribute("data-link", section.id);
   navList.appendChild(a);
-  console.log(navList);
+  navbar.appendChild(navList);
 });
-/**
- * End Helper Functions
- * Begin Main Functions
- *
- */
-
-// build the nav
 
 // Add class 'active' to section when near top of viewport
+const int = (entries) => {
+  entries.forEach((entry) => {
+    console.log(entry);
+    const navList = document.querySelector(
+      `.menu__link[data-link='${entry.target.id}']`
+    );
+    const section = document.getElementById(entry.target.id);
+    console.log(navList);
+
+    entry && entry.isIntersecting
+      ? (navList.classList.add("active"), section.classList.add("active"))
+      : (navList.classList.remove("active"),
+        section.classList.remove("active"));
+  });
+};
+const options = {
+  root: null,
+  rootMargin: "0px",
+  threshold: 0.7,
+};
+
+const observer = new IntersectionObserver(int, options);
+sections.forEach((section) => {
+  observer.observe(document.getElementById(section.id));
+});
 
 // Scroll to anchor ID using scrollTO event
-
-/**
- * End Main Functions
- * Begin Events
- *
- */
 
 // Build menu
 
