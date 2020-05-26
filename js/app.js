@@ -28,6 +28,7 @@ sections.forEach((section) => {
 });
 
 // Add class 'active' to section when near top of viewport
+// Using Intersection Observer API source: https://usefulangle.com/post/118/javascript-intersection-observer
 const int = (entries) => {
   entries.forEach((entry) => {
     console.log(entry);
@@ -46,7 +47,7 @@ const int = (entries) => {
 const options = {
   root: null,
   rootMargin: "0px",
-  threshold: 0.7,
+  threshold: 0.6,
 };
 
 const observer = new IntersectionObserver(int, options);
@@ -55,9 +56,11 @@ sections.forEach((section) => {
 });
 
 // Scroll to anchor ID using scrollTO event
-
-// Build menu
-
-// Scroll to section on link click
-
-// Set sections as active
+navbar.addEventListener("click", (e) => {
+  e.preventDefault();
+  const section = e.target.hasAttribute("data-link")
+    ? e.target
+    : e.target.parentElement;
+  const elementToScrollTo = document.getElementById(section.dataset.link);
+  elementToScrollTo.scrollIntoView({ block: "end", behavior: "smooth" });
+});
