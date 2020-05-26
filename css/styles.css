@@ -80,19 +80,24 @@ section {
   padding: 1em;
   font-weight: bold;
   text-decoration: none;
-  color: #000;
-}
-
-a:link,
-a:visited {
-  text-decoration: none;
+  color: white;
 }
 
 .menu__link:hover,
 .active {
   background: #333;
+  transition: ease 0.7s all;
+}
+
+a:hover,
+.active a,
+.menu__link:hover a {
   color: #fff;
-  transition: ease 0.3s all;
+}
+
+a:link,
+a:visited {
+  text-decoration: none;
 }
 
 /* Header Styles */
