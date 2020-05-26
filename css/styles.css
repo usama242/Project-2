@@ -70,18 +70,23 @@ section {
   padding: 1em;
   font-weight: bold;
   text-decoration: none;
-  color: white;
 }
 
-.menu__link:hover,
 .active {
   background: #333;
   transition: ease 0.7s all;
 }
+@media only screen and (min-width: 35em) {
+  .menu__link:hover {
+    background: #333;
+    transition: ease 0.7s all;
+  }
+  .menu__link:hover a {
+    color: white;
+  }
+}
 
-a:hover,
-.active a,
-.menu__link:hover a {
+.active a {
   color: #fff;
 }
 
